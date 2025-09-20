@@ -1,0 +1,140 @@
+/* ===== THEME TOKENS ===== */
+:root{
+  /* Dark (default) */
+  --bg:#101418;
+  --fg:#e8f0f2;
+  --muted:#9fb3c8;
+  --card:#161b22;
+  --line:#22343f;
+  --input:#0f1318;
+  --accent:#2dd4bf;
+}
+:root[data-theme="light"]{
+  --bg:#f6f7fb;
+  --fg:#0f172a;
+  --muted:#475569;
+  --card:#ffffff;
+  --line:#e5e7eb;
+  --input:#ffffff;
+  --accent:#0ea5e9;
+}
+
+/* ===== BASE ===== */
+*{box-sizing:border-box;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--fg)}
+a{color:var(--accent);text-decoration:none}
+.btn{padding:.5rem .8rem;background:var(--accent);color:#042;display:inline-block;border-radius:.5rem;border:0;cursor:pointer}
+.who{margin:0 .5rem}
+
+/* ===== TOPBAR & SIDEBAR ===== */
+.topbar{display:flex;align-items:center;gap:.75rem;background:var(--card);padding:.6rem 1rem;position:sticky;top:0;border-bottom:1px solid var(--line);z-index:10}
+.topbar .spacer{flex:1}
+.logo{font-size:1.2rem}
+.icon-btn{background:transparent;border:0;color:var(--fg);font-size:1.15rem;cursor:pointer;padding:.25rem .4rem;border-radius:.4rem}
+.icon-btn:hover{background:rgba(127,127,127,.12)}
+
+.sidebar{position:fixed;top:3.2rem;left:0;width:240px;background:var(--card);height:calc(100% - 3.2rem);padding:1rem;overflow:auto;border-right:1px solid var(--line)}
+.sidebar.hidden{display:none}
+.sidebar a{display:block;padding:.45rem 0;border-bottom:1px solid var(--line);color:var(--fg)}
+
+/* ===== CONTENT ===== */
+.container{max-width:1000px;margin:1rem auto;padding:0 1rem}
+h2{margin:.2rem 0 1rem}
+form label{display:block;margin:.6rem 0}
+input,select,textarea{width:100%;padding:.5rem;border-radius:.4rem;border:1px solid var(--line);background:var(--input);color:var(--fg)}
+.tbl{width:100%;border-collapse:collapse}
+.tbl th,.tbl td{border-bottom:1px solid var(--line);padding:.55rem;text-align:left;vertical-align:top}
+.ok{color:#38e28d}.error{color:#ff6b6b}
+
+/* Small screens */
+@media (max-width: 768px){
+  .sidebar{width:80%;max-width:320px}
+}
+.logo-wrap{display:flex;align-items:center}
+.logo-img{height:22px; width:auto; display:block} /* tweak height to fit your header */
+/* Theme tokens (if you don't already have them) */
+:root{
+  --bg:#f6f7fb;           /* page background (light) */
+  --text:#0f172a;         /* main text (light) */
+  --line:#e5e7eb;         /* borders (light) */
+  --card:#ffffff;         /* card bg (light) */
+  --muted:#475569;        /* secondary text (light) */
+}
+[data-theme="dark"]{
+  --bg:#0b1220;
+  --text:#e5e7eb;
+  --line:#1f2937;
+  --card:#111827;
+  --muted:#9ca3af;
+}
+
+/* Admin dashboard KPI cards */
+.dashboard-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px; }
+
+.stat-card, .kpi, .metric {                 /* use whatever class your cards have */
+  background: var(--card) !important;
+  color: var(--text) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 12px;
+  padding: 16px 18px;
+  box-shadow: 0 1px 2px rgba(0,0,0,.06);
+  /* kill any glass/blur styles leaking in */
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  background-image: none !important;
+}
+
+/* text inside the card should inherit the corrected color */
+.stat-card *, .kpi *, .metric * { color: inherit !important; }
+.stat-card .muted, .kpi .muted, .metric .muted { color: var(--muted) !important; }
+
+/* Keep sidebar links stacked and allow pushing bottom items */
+.sidebar { height: 100vh; }
+.sidebar .navlist {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.sidebar .navlist .grow { flex: 1 1 auto; }
+
+.sidebar .profile-item {
+  border-top: 1px solid var(--line, #e5e7eb);
+  padding-top: 8px;
+  margin-top: 8px;        /* optional, just for a little separation */
+}
+
+/* Optional active styling */
+.sidebar li.active > a {
+  background: var(--card, #e5eef9);
+  border-radius: 8px;
+}
+[data-theme="dark"] .sidebar li.active > a {
+  background: #172036;
+}
+/* status badges */
+.status {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.8rem;
+  border-radius: 0.6rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+.status.submitted { background: #f0ad4e; color: #fff; }  /* orange */
+.status.approved  { background: #5cb85c; color: #fff; }  /* green */
+.status.rejected  { background: #d9534f; color: #fff; }  /* red */
+.status.signed    { background: #0275d8; color: #fff; }  /* blue */
+
+/* --- Print-friendly view --- */
+@media print {
+  .topbar, #sidebar, .filters, .btn, .icon-btn, hr { display: none !important; }
+  .container, main.container, .table-wrap, table.table { width: 100% !important; margin: 0 !important; }
+  a[href]:after { content: ""; } /* don’t show URLs after links */
+  body { background: #fff !important; color: #000 !important; }
+  table.table th, table.table td { border-color: #888 !important; }
+}
